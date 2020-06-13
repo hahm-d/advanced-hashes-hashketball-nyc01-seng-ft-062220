@@ -126,4 +126,38 @@ def game_hash
   }
 end
 
-# Write code here
+def num_points_scored(player_name) 
+  #return number of points  
+  game_hash.each do |key, value|
+    value.each do |players, p_array|
+      if players == :players
+        p_array.each do |p_data|
+          if p_data[:player_name] == player_name
+            p p_data[:points]
+          end
+        end
+      end
+    end
+  end
+end
+
+
+def player_stats(player_name)
+  #return total stats of player
+  sum = 0;
+  game_hash.each do |key, value|
+    if value[:players]
+      value[:players].each do |element|
+        if element[:player_name] == player_name
+          sum += element[:points]
+          sum += element[:rebounds]
+          sum += element[:assists]
+          sum += element[:steals]
+          sum += element[:blocks]
+          sum += element[:slam_dunks]
+        end
+      end
+    end
+  end
+  sum
+end
