@@ -126,20 +126,87 @@ def game_hash
   }
 end
 
+
 def num_points_scored(player_name) 
   #return number of points  
   game_hash.each do |key, value|
-    value.each do |players, p_array|
-      if players == :players
-        p_array.each do |p_data|
-          if p_data[:player_name] == player_name
-            p p_data[:points]
+    if value[:players]
+      value.each do |players, p_array|
+        if players == :players
+          p_array.each do |p_data|
+            if p_data[:player_name] == player_name
+              return p_data[:points]
+            end
           end
         end
       end
     end
   end
 end
+
+
+#num_points_scored("Kemba Walker")
+
+
+def shoe_size(player_name)
+  #return player shoe size
+  game_hash.each do |key, value|
+    if value[:players]
+      value.each do |players, p_array|
+        if players == :players
+          p_array.each do |p_data|
+            if p_data[:player_name] == player_name
+              return p_data[:shoe]
+            end
+          end
+        end
+      end
+    end
+  end
+end
+
+#shoe_size("Kemba Walker")
+
+def team_colors(team_name)
+  # return array of team colors
+  game_hash.each do  |key, value|
+    if value[:team_name] == team_name
+      return value[:colors]
+    end
+  end
+end
+
+#team_colors("Charlotte Hornets")
+
+def team_names(team_name)
+  # return array of team names
+  output = [] 
+  game_hash.each do |key, value|
+    if value[:players] && value[:team_name] == team_name
+      value[:players].each do |element|
+        output.push(element[:player_name])
+      end
+    end
+  end
+  output
+end
+
+#team_names("Charlotte Hornets")
+
+def player_numbers(team_name)
+  # return array of player numbers
+  output = []
+  game_hash.each do |key, value|
+    if value[:players] && value[:team_name] == team_name
+      value[:players].each do |element|
+        output.push(element[:number])
+      end
+    end
+  end
+  output
+end
+
+#player_numbers("Charlotte Hornets")
 
 
 def player_stats(player_name)
@@ -161,3 +228,5 @@ def player_stats(player_name)
   end
   sum
 end
+
+#player_stats("Ben Gordon")
