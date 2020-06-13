@@ -211,22 +211,25 @@ end
 
 def player_stats(player_name)
   #return total stats of player
-  sum = 0;
-  game_hash.each do |key, value|
+  output = game_hash.each_with_object({}) do |(key, value), final|
     if value[:players]
       value[:players].each do |element|
         if element[:player_name] == player_name
-          sum += element[:points]
-          sum += element[:rebounds]
-          sum += element[:assists]
-          sum += element[:steals]
-          sum += element[:blocks]
-          sum += element[:slam_dunks]
+          final[:shoe] = element[:shoe]
+          final[:player_name] = element[:player_name]
+          final[:number] = element[:number]
+          final[:points] = element[:points]
+          final[:rebounds] = element[:rebounds]
+          final[:assists] = element[:assists]
+          final[:steals] = element[:steals]
+          final[:blocks] = element[:blocks]
+          final[:slam_dunks] = element[:slam_dunks]
         end
       end
     end
   end
-  sum
+  output
 end
+
 
 #player_stats("Ben Gordon")
