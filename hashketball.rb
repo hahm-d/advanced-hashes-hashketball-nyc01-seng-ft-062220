@@ -178,20 +178,18 @@ end
 
 #team_colors("Charlotte Hornets")
 
-def team_names(team_name)
+def team_names
   # return array of team names
   output = [] 
   game_hash.each do |key, value|
-    if value[:players] && value[:team_name] == team_name
-      value[:players].each do |element|
-        output.push(element[:player_name])
-      end
+    if value[:team_name]
+        output.push(value[:team_name])
     end
   end
   output
 end
 
-#team_names("Charlotte Hornets")
+#team_names
 
 def player_numbers(team_name)
   # return array of player numbers
