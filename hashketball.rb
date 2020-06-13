@@ -232,3 +232,27 @@ end
 
 #player_stats("Ben Gordon")
 
+def big_shoe_rebounds
+  #return rebound of player with biggest shoe size
+  biggest_size = nil
+  rebounds = nil;
+  output = game_hash.each do |key, value|
+    if value[:players]
+      value.each do |players, p_array|
+        if players == :players
+          p_array.each do |p_data|
+            if p_data[:player_name]
+              if biggest_size == nil || biggest_size < p_data[:shoe]
+               biggest_size = p_data[:shoe]
+               rebounds = p_data[:rebounds]
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+  rebounds
+end
+
+big_shoe_rebounds
